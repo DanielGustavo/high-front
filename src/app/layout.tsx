@@ -1,9 +1,18 @@
 import React from 'react';
-import { Inter } from 'next/font/google';
-
+import { Roboto_Slab, Roboto_Flex } from 'next/font/google';
 import type { Metadata } from 'next';
 
-const inter = Inter({ subsets: ['latin'] });
+import Providers from './Providers';
+
+const robotoSlab = Roboto_Slab({
+  subsets: ['latin'],
+  variable: '--robotoSlab',
+});
+
+const robotoFlex = Roboto_Flex({
+  subsets: ['latin'],
+  variable: '--robotoFlex',
+});
 
 export const metadata: Metadata = {
   title: 'High',
@@ -15,8 +24,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <Providers>
+      <html lang="en">
+        <body className={`${robotoSlab.variable} ${robotoFlex.variable}`}>
+          {children}
+        </body>
+      </html>
+    </Providers>
   );
 }
