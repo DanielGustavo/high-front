@@ -14,11 +14,16 @@ export const theme = {
       small: '13px',
       default: '14px',
       medium: '20px',
+      large: '28px',
     },
   },
   spacing: {
     xs: '8px',
     sm: '16px',
     md: '24px',
+    lg: '32px',
+  },
+  zIndex: {
+    modal: 10,
   },
 };
