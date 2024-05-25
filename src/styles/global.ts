@@ -18,4 +18,10 @@ export const GlobalStyle = createGlobalStyle`
   button {
     cursor: pointer;
   }
+
+  a {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+  }
 `;
