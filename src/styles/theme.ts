@@ -6,6 +6,9 @@ export const theme = {
     lightGray2: '#6B6B6B',
     gray: '#242424',
     light: '#FFFFFF',
+    lightBlue: '#F2F2F2',
+    error: '#C94A4A',
+    success: '#156D12',
   },
   font: {
     robotoSlab: 'var(--robotoSlab)',
@@ -13,6 +16,7 @@ export const theme = {
     sizes: {
       small: '13px',
       default: '14px',
+      xDefault: '16px',
       medium: '20px',
       large: '28px',
     },

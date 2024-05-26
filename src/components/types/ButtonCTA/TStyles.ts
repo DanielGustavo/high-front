@@ -1,4 +1,4 @@
-import { TSize, TVariation } from "./TButtonCTA";
+import { TSize, TVariation } from './TButtonCTA';
 
 export type TContainer = {
   variation: TVariation;

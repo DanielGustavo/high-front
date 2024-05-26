@@ -6,7 +6,9 @@ import pluginReactConfig from 'eslint-plugin-react/configs/recommended.js';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 
-const myRules = {};
+const myRules = {
+  '@typescript-eslint/no-explicit-any': 'off',
+};
 
 export default [
   { languageOptions: { globals: globals.browser } },

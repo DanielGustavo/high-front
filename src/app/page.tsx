@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -23,9 +24,11 @@ export default function Home() {
             </p>
           </div>
 
-          <ButtonCTA variation="gray" size="medium" width="213px">
-            Start reading
-          </ButtonCTA>
+          <Link href="/posts">
+            <ButtonCTA variation="gray" size="medium" width="213px">
+              Start reading
+            </ButtonCTA>
+          </Link>
         </section>
       </ContentContainer>
 

@@ -1,4 +1,10 @@
-import React, { forwardRef, useImperativeHandle, useState } from 'react';
+import React, {
+  MouseEventHandler,
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useState,
+} from 'react';
 import { createPortal } from 'react-dom';
 import FeatherIcon from 'feather-icons-react';
 
@@ -28,6 +34,24 @@ const Modal: React.ForwardRefRenderFunction<TModalRef, TModal> = (
     setTimeout(() => setKeepInDOM(false), fadeMilliseconds);
   }
 
+  useEffect(() => {
+    function handleEsc(event: KeyboardEvent) {
+      if (event.key === 'Escape') close();
+    }
+
+    window.addEventListener('keyup', handleEsc);
+
+    return () => {
+      window.removeEventListener('keyup', handleEsc);
+    };
+  }, []);
+
+  const handleBackgroundClick: MouseEventHandler<HTMLDivElement> = (event) => {
+    const clickIsOnlyOnBackground = event.currentTarget === event.target;
+
+    if (clickIsOnlyOnBackground) close();
+  };
+
   useImperativeHandle(
     ref,
     () => ({
@@ -38,7 +62,11 @@ const Modal: React.ForwardRefRenderFunction<TModalRef, TModal> = (
   );
 
   const Component = (
-    <Background fadeMilliseconds={fadeMilliseconds} open={isOpen}>
+    <Background
+      onClick={handleBackgroundClick}
+      fadeMilliseconds={fadeMilliseconds}
+      open={isOpen}
+    >
       <Container>
         <Header>
           <button type="button" onClick={close}>
