@@ -1,6 +1,8 @@
 import React from 'react';
 import { Roboto_Slab, Roboto_Flex } from 'next/font/google';
 import type { Metadata } from 'next';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Providers from './Providers';
 
@@ -28,6 +30,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={`${robotoSlab.variable} ${robotoFlex.variable}`}>
           {children}
+          <ToastContainer />
         </body>
       </html>
     </Providers>

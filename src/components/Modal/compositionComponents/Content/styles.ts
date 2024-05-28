@@ -8,6 +8,8 @@ export const Container = styled.div`
   align-items: center;
   margin: auto 0;
 
+  overflow-y: auto;
+
   gap: ${({ theme }) => theme.spacing.lg};
 
   h1 {

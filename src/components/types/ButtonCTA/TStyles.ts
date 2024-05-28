@@ -4,4 +4,5 @@ export type TContainer = {
   variation: TVariation;
   size: TSize;
   width?: string;
+  isLoading?: boolean;
 };

@@ -1,11 +1,10 @@
 import React, { forwardRef } from 'react';
 
 import Modal from '@/components/Modal';
-import Input from '@/components/Input';
 import { TModalRef } from '@/components/types/Modal/Root/TModal';
-import ButtonCTA from '@/components/ButtonCTA';
+import Form from './partials/Form';
 
-import { ContentContainer, Footer, Form, Header, InputsGroup } from './styles';
+import { ContentContainer, Footer, Header } from './styles';
 
 import { TSignInModal } from '@/components/types/Header/modals/SignInModal/TSignInModal';
 
@@ -26,22 +25,7 @@ const SignInModal: React.ForwardRefRenderFunction<TModalRef, TSignInModal> = (
           <p>Enter your email address and your password to sign in.</p>
         </Header>
 
-        <Form>
-          <InputsGroup>
-            <Input label="Email" placeholder="Insert your email" fitParent />
-
-            <Input
-              type="password"
-              label="Password"
-              placeholder="Insert your password"
-              fitParent
-            />
-          </InputsGroup>
-
-          <ButtonCTA width="226px" variation="gray">
-            Sign in
-          </ButtonCTA>
-        </Form>
+        <Form />
 
         <Footer>
           <p>

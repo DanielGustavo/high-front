@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { darken } from 'polished';
+import { darken, lighten } from 'polished';
 
 import { TContainer } from '@/components/types/ButtonCTA/TStyles';
 
@@ -9,18 +9,26 @@ export const Container = styled.button<TContainer>`
   border: none;
   border-radius: 20px;
   width: fit-content;
+  position: relative;
+  overflow: hidden;
 
   padding: ${({ size }) => variations.sizes[size].padding};
 
   background: ${({ variation }) => variations.colors[variation].background};
-  color: ${({ theme }) => theme.colors.light};
-  font-weight: 500;
-  line-height: ${({ size }) => variations.sizes[size].lineHeight};
-  font-size: ${({ size }) => variations.sizes[size].fontSize};
+
+  span {
+    color: ${({ theme, isLoading }) => {
+      return isLoading ? 'transparent' : theme.colors.light;
+    }};
+
+    font-weight: 500;
+    line-height: ${({ size }) => variations.sizes[size].lineHeight};
+    font-size: ${({ size }) => variations.sizes[size].fontSize};
+  }
 
   transition: 100ms;
 
-  &:hover {
+  &:hover:not([disabled]) {
     background: ${({ variation }) => {
       const bgColor = variations.colors[variation].background;
 
@@ -30,8 +38,18 @@ export const Container = styled.button<TContainer>`
     transform: scale(1.006);
   }
 
-  &:active {
+  &:active:not([disabled]) {
     transform: scale(calc(1 - 0.006));
+  }
+
+  &:disabled {
+    background: ${({ variation }) => {
+      const bgColor = variations.colors[variation].background;
+
+      return lighten(0.3, bgColor);
+    }};
+
+    cursor: not-allowed;
   }
 
   ${({ width }) => {

@@ -20,24 +20,6 @@ export const Header = styled.header`
   }
 `;
 
-export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
-
-  width: 50%;
-  gap: ${({ theme }) => theme.spacing.md};
-`;
-
-export const InputsGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-
-  gap: ${({ theme }) => theme.spacing.sm};
-`;
-
 export const Footer = styled.footer`
   p {
     color: ${({ theme }) => theme.colors.gray};
