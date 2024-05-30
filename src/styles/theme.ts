@@ -18,6 +18,7 @@ export const theme = {
       default: '14px',
       xDefault: '16px',
       medium: '20px',
+      xMedium: '24px',
       large: '28px',
     },
   },
@@ -26,8 +27,10 @@ export const theme = {
     sm: '16px',
     md: '24px',
     lg: '32px',
+    xlg: '40px',
   },
   zIndex: {
-    modal: 10,
+    header: 10,
+    modal: 20,
   },
 };

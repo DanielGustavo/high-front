@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import FeatherIcon from 'feather-icons-react';
 
+import AvatarPhoto from '@/components/Avatar';
 import AuthenticatedMenu from './partials/AuthenticatedMenu';
 
 import { AvatarButton, Container } from './styles';
@@ -15,7 +15,7 @@ const Avatar: React.FC = () => {
   return (
     <Container>
       <AvatarButton type="button" onClick={toggleMenu}>
-        <FeatherIcon icon="user" size={25} />
+        <AvatarPhoto />
       </AvatarButton>
 
       <AuthenticatedMenu isOpen={menuIsOpen} setIsOpen={setMenuIsOpen} />

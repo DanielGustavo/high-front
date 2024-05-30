@@ -7,22 +7,12 @@ export const Container = styled.span`
 export const AvatarButton = styled.button`
   position: relative;
   overflow: hidden;
-
-  border: 1px solid ${({ theme }) => theme.colors.lightGray2};
   border-radius: 100%;
+  border: none;
 
   display: flex;
   align-items: center;
   justify-content: center;
-
-  width: 32px;
-  height: 32px;
-
-  background: ${({ theme }) => theme.colors.lightGray};
-
-  svg {
-    stroke: ${({ theme }) => theme.colors.lightGray2};
-  }
 
   &:hover {
     &::after {

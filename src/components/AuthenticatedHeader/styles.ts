@@ -14,6 +14,8 @@ export const Header = styled.header`
     align-items: center;
     gap: ${({ theme }) => theme.spacing.sm};
   }
+
+  z-index: ${({ theme }) => theme.zIndex.header};
 `;
 
 export const NavContainer = styled.nav`
