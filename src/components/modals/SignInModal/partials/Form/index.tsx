@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 import Input from '@/components/Input';
 import ButtonCTA from '@/components/ButtonCTA';
@@ -8,12 +9,15 @@ import { TFields, useValidation } from './useValidation';
 
 import * as highLib from '@/libs/high';
 
+import { useAuth } from '@/contexts/AuthContext';
+
 import { Container, InputsGroup } from './styles';
 
-import { TForm } from '@/components/types/Header/modals/SignUpModal/TForm';
-
-const Form: React.FC<TForm> = ({ openSignInModal }) => {
+const Form: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
+
+  const { persistAuthData } = useAuth();
+  const router = useRouter();
 
   const {
     register,
@@ -21,15 +25,18 @@ const Form: React.FC<TForm> = ({ openSignInModal }) => {
     formState: { errors },
   } = useValidation();
 
-  async function onSubmit({ name, email, password }: TFields) {
+  async function onSubmit({ email, password }: TFields) {
     try {
       setIsLoading(true);
-      const { user } = await highLib.signUp({ name, email, password });
-      console.log(user);
+      const { token } = await highLib.signIn(email, password);
 
-      toast('Signed up successfully! Now, sign in', { type: 'success' });
+      const [, payload] = token.split('.');
+      const user = JSON.parse(atob(payload));
 
-      openSignInModal();
+      persistAuthData(user as any, token);
+
+      toast('Signed in successfully!', { type: 'success' });
+      router.push('/posts');
     } catch (error: any) {
       toast(error.message, { type: 'error' });
     } finally {
@@ -40,14 +47,6 @@ const Form: React.FC<TForm> = ({ openSignInModal }) => {
   return (
     <Container onSubmit={handleSubmit(onSubmit)}>
       <InputsGroup>
-        <Input
-          label="Name"
-          placeholder="Type your name"
-          fitParent
-          {...register('name')}
-          error={errors.name?.message}
-        />
-
         <Input
           label="Email"
           placeholder="Insert your email"
@@ -64,15 +63,6 @@ const Form: React.FC<TForm> = ({ openSignInModal }) => {
           {...register('password')}
           error={errors.password?.message}
         />
-
-        <Input
-          type="password"
-          label="Confirm your password"
-          placeholder="Insert your password"
-          fitParent
-          {...register('passwordConfirmation')}
-          error={errors.passwordConfirmation?.message}
-        />
       </InputsGroup>
 
       <ButtonCTA
@@ -81,7 +71,7 @@ const Form: React.FC<TForm> = ({ openSignInModal }) => {
         variation="gray"
         isLoading={isLoading}
       >
-        Sign up
+        Sign in
       </ButtonCTA>
     </Container>
   );

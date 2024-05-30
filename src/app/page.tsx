@@ -1,15 +1,28 @@
 'use client';
 
-import React from 'react';
-import Link from 'next/link';
+import React, { useRef } from 'react';
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ButtonCTA from '@/components/ButtonCTA';
+import { SignInModal, SignUpModal } from '@/components/modals';
+
+import { TModalRef } from '@/components/types/Modal/Root/TModal';
 
 import { Container, ContentContainer } from './styles';
 
 export default function Home() {
+  const signInModalRef = useRef<TModalRef>();
+  const signUpModalRef = useRef<TModalRef>();
+
+  function openSignInModal() {
+    signInModalRef.current?.open();
+  }
+
+  function openSignUpModal() {
+    signUpModalRef.current?.open();
+  }
+
   return (
     <Container>
       <Header />
@@ -24,15 +37,27 @@ export default function Home() {
             </p>
           </div>
 
-          <Link href="/posts">
-            <ButtonCTA variation="gray" size="medium" width="213px">
-              Start reading
-            </ButtonCTA>
-          </Link>
+          <ButtonCTA
+            variation="gray"
+            size="medium"
+            width="213px"
+            onClick={openSignInModal}
+          >
+            Start reading
+          </ButtonCTA>
         </section>
       </ContentContainer>
 
       <Footer />
+
+      <SignInModal
+        ref={signInModalRef as any}
+        openSignUpModal={openSignUpModal}
+      />
+      <SignUpModal
+        ref={signUpModalRef as any}
+        openSignInModal={openSignInModal}
+      />
     </Container>
   );
 }

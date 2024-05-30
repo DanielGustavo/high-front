@@ -5,7 +5,7 @@ import Form from './partials/Form';
 
 import { ContentContainer, Footer, Header } from './styles';
 
-import { TSignUpModal } from '@/components/types/Header/modals/SignUpModal/TSignUpModal';
+import { TSignUpModal } from '@/components/types/modals/SignUpModal/TSignUpModal';
 import { TModalRef } from '@/components/types/Modal/Root/TModal';
 
 const SignUpModal: React.ForwardRefRenderFunction<TModalRef, TSignUpModal> = (

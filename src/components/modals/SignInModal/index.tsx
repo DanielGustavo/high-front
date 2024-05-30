@@ -6,7 +6,7 @@ import Form from './partials/Form';
 
 import { ContentContainer, Footer, Header } from './styles';
 
-import { TSignInModal } from '@/components/types/Header/modals/SignInModal/TSignInModal';
+import { TSignInModal } from '@/components/types/modals/SignInModal/TSignInModal';
 
 const SignInModal: React.ForwardRefRenderFunction<TModalRef, TSignInModal> = (
   { openSignUpModal: openGetStartedModal },

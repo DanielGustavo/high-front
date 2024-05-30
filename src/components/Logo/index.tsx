@@ -3,11 +3,18 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import logo from '@/static/img/logo.svg';
+import simpleLogo from '@/static/img/simpleLogo.svg';
 
-const Logo: React.FC = () => {
+import { TLogo } from '@/components/types/Logo/TLogo';
+
+const Logo: React.FC<TLogo> = ({ simple }) => {
   return (
-    <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
-      <Image height={30} src={logo} alt="High logo" />
+    <Link href="/posts" style={{ display: 'flex', alignItems: 'center' }}>
+      {simple ? (
+        <Image height={25} src={simpleLogo} alt="High logo" />
+      ) : (
+        <Image height={30} src={logo} alt="High logo" />
+      )}
     </Link>
   );
 };

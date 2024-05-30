@@ -3,7 +3,7 @@ import React, { LegacyRef, useRef } from 'react';
 import ButtonCTA from '@/components/ButtonCTA';
 import Logo from '@/components/Logo';
 
-import { SignInModal, SignUpModal } from './modals';
+import { SignInModal, SignUpModal } from '@/components/modals';
 
 import { Container, InnerContainer, NavButton, NavContainer } from './styles';
 
