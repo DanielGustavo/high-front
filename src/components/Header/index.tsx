@@ -1,4 +1,5 @@
 import React, { LegacyRef, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 
 import ButtonCTA from '@/components/ButtonCTA';
 import Logo from '@/components/Logo';
@@ -12,6 +13,8 @@ import { TModalRef } from '@/components/types/Modal/Root/TModal';
 const Header: React.FC = () => {
   const signUpModalRef = useRef<TModalRef>();
   const signInModalRef = useRef<TModalRef>();
+
+  const router = useRouter();
 
   function openSignUpModal() {
     signUpModalRef.current?.open();
@@ -40,6 +43,7 @@ const Header: React.FC = () => {
       <SignInModal
         openSignUpModal={openSignUpModal}
         ref={signInModalRef as LegacyRef<TModalRef>}
+        onSignIn={() => router.push('/posts')}
       />
     </Container>
   );

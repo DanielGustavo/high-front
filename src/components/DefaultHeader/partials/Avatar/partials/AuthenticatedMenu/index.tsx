@@ -1,4 +1,4 @@
-import React, { Dispatch } from 'react';
+import React from 'react';
 import FeatherIcon from 'feather-icons-react';
 
 import SimpleButton from '@/components/SimpleButton';
@@ -6,7 +6,7 @@ import MenuBase from '../MenuBase';
 
 import { useAuth } from '@/contexts/AuthContext';
 
-import { TAuthenticatedMenu } from '@/components/types/AuthenticatedHeader/Avatar/AuthenticatedMenu/TAuthenticatedMenu';
+import { TAuthenticatedMenu } from '@/components/types/DefaultHeader/Avatar/AuthenticatedMenu/TAuthenticatedMenu';
 
 import { MenuUserDataSection } from './styles';
 
@@ -22,7 +22,11 @@ const AuthenticatedMenu: React.FC<TAuthenticatedMenu> = ({
   }
 
   return (
-    <MenuBase isOpen={isOpen} setIsOpen={setIsOpen}>
+    <MenuBase
+      isOpen={isOpen}
+      setIsOpen={setIsOpen}
+      onClick={() => setIsOpen(false)}
+    >
       <MenuUserDataSection>
         <b>{user?.name}</b>
         <p>{user?.email}</p>

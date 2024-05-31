@@ -1,11 +1,11 @@
-import React, { Dispatch, useState } from 'react';
+import React, { useState } from 'react';
 import AnimateHeight from 'react-animate-height';
 
-import { TMenuBase } from '@/components/types/AuthenticatedHeader/Avatar/MenuBase/TMenuBase';
+import { TMenuBase } from '@/components/types/DefaultHeader/Avatar/MenuBase/TMenuBase';
 
 import { Container } from './styles';
 
-const MenuBase: React.FC<TMenuBase> = ({ isOpen, setIsOpen, children }) => {
+const MenuBase: React.FC<TMenuBase> = ({ isOpen, children, ...props }) => {
   const [menuClass, setMenuClass] = useState(undefined as undefined | string);
 
   function handleHeightAnimationEnd() {
@@ -19,7 +19,7 @@ const MenuBase: React.FC<TMenuBase> = ({ isOpen, setIsOpen, children }) => {
   }
 
   return (
-    <Container className={menuClass}>
+    <Container className={menuClass} {...props}>
       <AnimateHeight
         height={isOpen ? 'auto' : 0}
         duration={300}

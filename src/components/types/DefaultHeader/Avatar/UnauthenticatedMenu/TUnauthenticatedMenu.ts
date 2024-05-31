@@ -1,6 +1,6 @@
-import { Dispatch } from "react";
+import { Dispatch } from 'react';
 
-export type TAuthenticatedMenu = {
+export type TUnauthenticatedMenu = {
   isOpen: boolean;
   setIsOpen: React.SetStateAction<Dispatch<boolean>>;
 };

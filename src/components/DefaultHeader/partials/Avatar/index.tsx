@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 
 import AvatarPhoto from '@/components/Avatar';
-import AuthenticatedMenu from './partials/AuthenticatedMenu';
-
 import { TAvatar } from '@/components/types/Avatar/TAvatar';
+import AuthenticatedMenu from './partials/AuthenticatedMenu';
+import UnauthenticatedMenu from './partials/UnauthenticatedMenu';
+
+import { useAuth } from '@/contexts/AuthContext';
 
 import { AvatarButton, Container } from './styles';
 
 const Avatar: React.FC<TAvatar> = ({ userName, src }) => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
+
+  const { authenticated } = useAuth();
 
   function toggleMenu() {
     setMenuIsOpen((state) => !state);
@@ -20,7 +24,11 @@ const Avatar: React.FC<TAvatar> = ({ userName, src }) => {
         <AvatarPhoto userName={userName} src={src} />
       </AvatarButton>
 
-      <AuthenticatedMenu isOpen={menuIsOpen} setIsOpen={setMenuIsOpen} />
+      {authenticated ? (
+        <AuthenticatedMenu isOpen={menuIsOpen} setIsOpen={setMenuIsOpen} />
+      ) : (
+        <UnauthenticatedMenu isOpen={menuIsOpen} setIsOpen={setMenuIsOpen} />
+      )}
     </Container>
   );
 };

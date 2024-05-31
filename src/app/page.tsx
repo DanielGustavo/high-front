@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
+import { useRouter } from 'next/navigation';
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -14,6 +15,8 @@ import { Container, ContentContainer } from './styles';
 export default function Home() {
   const signInModalRef = useRef<TModalRef>();
   const signUpModalRef = useRef<TModalRef>();
+
+  const router = useRouter();
 
   function openSignInModal() {
     signInModalRef.current?.open();
@@ -53,6 +56,7 @@ export default function Home() {
       <SignInModal
         ref={signInModalRef as any}
         openSignUpModal={openSignUpModal}
+        onSignIn={() => router.push('/posts')}
       />
       <SignUpModal
         ref={signUpModalRef as any}

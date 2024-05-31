@@ -9,7 +9,7 @@ import { ContentContainer, Footer, Header } from './styles';
 import { TSignInModal } from '@/components/types/modals/SignInModal/TSignInModal';
 
 const SignInModal: React.ForwardRefRenderFunction<TModalRef, TSignInModal> = (
-  { openSignUpModal: openGetStartedModal },
+  { openSignUpModal: openGetStartedModal, onSignIn },
   ref
 ) => {
   function handleSignUpClick() {
@@ -25,7 +25,7 @@ const SignInModal: React.ForwardRefRenderFunction<TModalRef, TSignInModal> = (
           <p>Enter your email address and your password to sign in.</p>
         </Header>
 
-        <Form />
+        <Form onSignIn={onSignIn} />
 
         <Footer>
           <p>

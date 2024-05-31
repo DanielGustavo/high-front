@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import { useRouter } from 'next/navigation';
 
 import Input from '@/components/Input';
 import ButtonCTA from '@/components/ButtonCTA';
@@ -11,13 +10,15 @@ import * as highLib from '@/libs/high';
 
 import { useAuth } from '@/contexts/AuthContext';
 
+import { TForm } from '@/components/types/modals/SignInModal/Form/TForm';
+
 import { Container, InputsGroup } from './styles';
 
-const Form: React.FC = () => {
+const Form: React.FC<TForm> = ({ onSignIn }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const { persistAuthData } = useAuth();
-  const router = useRouter();
 
   const {
     register,
@@ -40,7 +41,8 @@ const Form: React.FC = () => {
       persistAuthData(user as any, token);
 
       toast('Signed in successfully!', { type: 'success' });
-      router.push('/posts');
+
+      if (onSignIn) onSignIn();
     } catch (error: any) {
       toast(error.message, { type: 'error' });
     } finally {
