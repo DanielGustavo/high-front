@@ -18,7 +18,6 @@ const AuthenticatedMenu: React.FC<TAuthenticatedMenu> = ({
 
   function handleLogout() {
     logout();
-    document.location.reload();
   }
 
   return (
