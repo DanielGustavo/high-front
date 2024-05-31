@@ -11,4 +11,3 @@ export const ContentContainer = styled.div`
 
   width: 78%;
 `;
-

@@ -20,6 +20,7 @@ export const theme = {
       medium: '20px',
       xMedium: '24px',
       large: '28px',
+      xLarge: '42px',
     },
   },
   spacing: {
