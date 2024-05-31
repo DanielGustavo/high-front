@@ -33,6 +33,10 @@ const Form: React.FC = () => {
       const [, payload] = token.split('.');
       const user = JSON.parse(atob(payload));
 
+      if (user.avatarFilename) {
+        user.avatarFilename = `${process.env.NEXT_PUBLIC_HIGH_STATIC_BASE_PATH}/${user.avatarFilename}`;
+      }
+
       persistAuthData(user as any, token);
 
       toast('Signed in successfully!', { type: 'success' });

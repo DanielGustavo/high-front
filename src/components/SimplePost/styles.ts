@@ -1,6 +1,7 @@
+import Link from 'next/link';
 import styled from 'styled-components';
 
-export const Container = styled.article`
+export const Container = styled(Link)`
   display: flex;
   flex-direction: column;
 
@@ -10,6 +11,10 @@ export const Container = styled.article`
     color: ${({ theme }) => theme.colors.gray};
     font-size: ${({ theme }) => theme.font.sizes.xDefault};
     font-weight: 700;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
   }
 
   transition: 200ms;

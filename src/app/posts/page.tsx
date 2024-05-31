@@ -1,38 +1,37 @@
-'use client';
+import React, { Suspense } from 'react';
+import dynamic from 'next/dynamic';
 
-import React from 'react';
+import PostsContainer from './Posts';
+import RandomPostsSuspense from './RandomPosts';
+import PostsSkeleton from './Posts/Skeleton';
+import RandomPostsSkeleton from './RandomPosts/Skeleton';
 
-import AuthenticatedHeader from '@/components/AuthenticatedHeader';
-import PostCard from '@/components/PostCard';
-import SimplePost from '@/components/SimplePost';
+const AuthenticatedHeader = dynamic(
+  () => import('@/components/AuthenticatedHeader'),
+  { ssr: false }
+);
 
-import { Aside, Container, ContentContainer, Main } from './styles';
+import { Container, ContentContainer } from './styles';
 
-export default function Posts() {
+type TParams = {
+  searchParams: {
+    search?: string;
+  };
+};
+
+export default async function Posts({ searchParams }: TParams) {
   return (
     <Container>
       <AuthenticatedHeader />
 
       <ContentContainer>
-        <Main>
-          <PostCard />
-          <PostCard />
-          <PostCard />
-          <PostCard />
-          <PostCard />
-          <PostCard />
-        </Main>
+        <Suspense fallback={<PostsSkeleton />}>
+          <PostsContainer search={searchParams.search} />
+        </Suspense>
 
-        <Aside>
-          <h1>Random Posts</h1>
-
-          <div>
-            <SimplePost />
-            <SimplePost />
-            <SimplePost />
-            <SimplePost />
-          </div>
-        </Aside>
+        <Suspense fallback={<RandomPostsSkeleton />}>
+          <RandomPostsSuspense />
+        </Suspense>
       </ContentContainer>
     </Container>
   );

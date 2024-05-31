@@ -1,6 +1,7 @@
+import Link from 'next/link';
 import styled from 'styled-components';
 
-export const Container = styled.article`
+export const Container = styled(Link)`
   display: flex;
   flex-direction: column;
 
@@ -50,11 +51,19 @@ export const PostData = styled.div`
   h1 {
     color: ${({ theme }) => theme.colors.gray};
     font-size: ${({ theme }) => theme.font.sizes.xMedium};
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
   }
 
   p {
     color: ${({ theme }) => theme.colors.lightGray2};
     font-size: ${({ theme }) => theme.font.sizes.xDefault};
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
   }
 `;
 

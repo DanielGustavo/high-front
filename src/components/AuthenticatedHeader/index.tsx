@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import FeatherIcon from 'feather-icons-react';
@@ -7,9 +9,15 @@ import Logo from '@/components/Logo';
 import SimpleButton from '@/components/SimpleButton';
 import Avatar from './partials/Avatar';
 
+import { useAuth } from '@/contexts/AuthContext';
+
 import { Header, NavContainer } from './styles';
 
 const AuthenticatedHeader: React.FC = () => {
+  const { user } = useAuth();
+
+  if (!user) return
+
   return (
     <Header>
       <div>
@@ -25,7 +33,10 @@ const AuthenticatedHeader: React.FC = () => {
           </SimpleButton>
         </Link>
 
-        <Avatar />
+        <Avatar
+          userName={user.name}
+          src={user.avatarFilename || undefined}
+        />
       </NavContainer>
     </Header>
   );

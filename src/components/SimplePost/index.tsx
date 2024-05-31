@@ -1,20 +1,26 @@
+'use client';
+
 import React from 'react';
 
 import Avatar from '@/components/Avatar';
 
+import { TPost } from '@/libs/high/types/TPost';
+
 import { Container, Header } from './styles';
 
-const SimplePost: React.FC = () => {
+const SimplePost: React.FC<TPost> = (post) => {
   return (
-    <Container>
+    <Container href={`/posts/${post.id}`}>
       <Header>
-        <Avatar size={20} />
-        <h2>Netflix Technology Blog</h2>
+        <Avatar
+          src={post.user?.avatarFilename || undefined}
+          userName={post.user?.name ?? '???'}
+          size={20}
+        />
+        <h2>{post.user?.name ?? '???'}</h2>
       </Header>
 
-      <p>
-        RecSysOps: Best Practices for Operating a Large-Scale Recommender System
-      </p>
+      <p>{post.title}</p>
     </Container>
   );
 };

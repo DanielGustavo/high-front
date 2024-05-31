@@ -8,6 +8,8 @@ export const Header = styled.header`
   border-bottom: 1px solid ${({ theme }) => theme.colors.lightBlue};
 
   background: ${({ theme }) => theme.colors.light};
+  top: 0;
+  position: sticky;
 
   div {
     display: flex;

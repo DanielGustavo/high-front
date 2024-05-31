@@ -4,7 +4,7 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    remotePatterns: [{ hostname: 'miro.medium.com' }],
+    remotePatterns: [{ hostname: 'localhost' }],
   },
 };
 

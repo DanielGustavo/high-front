@@ -1,7 +1,12 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
+import { format } from 'date-fns';
 
 import Avatar from '@/components/Avatar';
+
+import { TPost } from '@/libs/high/types/TPost';
 
 import {
   AuthorContainer,
@@ -12,40 +17,40 @@ import {
   Section,
 } from './styles';
 
-const PostCard: React.FC = () => {
+const PostCard: React.FC<TPost> = (post) => {
   return (
-    <Container>
+    <Container href={`/posts/${post.id}`}>
       <AuthorContainer>
         <Avatar
+          userName={post.user?.name ?? '???'}
           size={20}
-          src="https://miro.medium.com/v2/resize:fill:25:25/1*BJWRqfSMf9Da9vsXG9EBRQ.jpeg"
+          src={post.user?.avatarFilename || undefined}
         />
 
-        <p>Netflix Technology Blog</p>
+        <p>{post.user?.name ?? '???'}</p>
       </AuthorContainer>
 
       <Section>
         <PostData>
-          <h1>
-            RecSysOps: Best Practices for Operating a Large-Scale Recommender
-            System
-          </h1>
+          <h1>{post.title}</h1>
 
-          <p>by Ehsan Saberian and Justin Basilico</p>
+          <p>{post.description}</p>
 
           <Footer>
-            <p>Sep 30, 2022</p>
+            <p>{format(post.createdAt, 'MMMM dd, yyyy')}</p>
           </Footer>
         </PostData>
 
-        <PostThumbnail>
-          <Image
-            src="https://miro.medium.com/v2/resize:fill:200:134/1*ytQFiP4-oh_QHyOfN6UyKQ.jpeg"
-            width={160}
-            height={107}
-            alt="title"
-          />
-        </PostThumbnail>
+        {post.thumbnailFilename && (
+          <PostThumbnail>
+            <Image
+              src={post.thumbnailFilename}
+              width={160}
+              height={107}
+              alt={`"${post.title}" thubmnail`}
+            />
+          </PostThumbnail>
+        )}
       </Section>
     </Container>
   );
