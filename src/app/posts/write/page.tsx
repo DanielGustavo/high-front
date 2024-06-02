@@ -31,6 +31,7 @@ const WritePage: React.FC = () => {
   const [isLoadingPublishment, setIsLoadingPublishment] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [post, setPost] = useState(undefined as undefined | TPost);
+  const [gotDraftValues, setGotDraftValues] = useState(false);
 
   const searchParams = useSearchParams();
   const postId = searchParams.get('postId');
@@ -41,7 +42,11 @@ const WritePage: React.FC = () => {
     handleSubmit,
     setValue,
     trigger,
+    watch,
   } = useValidation();
+
+  const title = watch('title');
+  const description = watch('description');
 
   const {
     setPublishButtonIsDisabled,
@@ -95,6 +100,31 @@ const WritePage: React.FC = () => {
       formNode?.dispatchEvent(new Event('submit', { bubbles: true }));
     };
   }, [formNode]);
+
+  useEffect(() => {
+    if (post) return;
+
+    if (!gotDraftValues) {
+      setValue('title', localStorage.getItem('draft:title') || '');
+      setValue('description', localStorage.getItem('draft:description') || '');
+
+      setGotDraftValues(true);
+    } else {
+      localStorage.setItem('draft:title', title || '');
+      localStorage.setItem('draft:description', description ?? '');
+      localStorage.setItem('draft:content', htmlContent || '');
+    }
+  }, [post, title, description, htmlContent, gotDraftValues]);
+
+  function getEditorDefaultValue() {
+    if (post) {
+      return post.content || '';
+    }
+
+    if (gotDraftValues) return htmlContent || '';
+
+    return localStorage.getItem('draft:content') || undefined;
+  }
 
   async function onSubmit({ title, description }: TFields) {
     setIsLoadingPublishment(true);
@@ -162,7 +192,7 @@ const WritePage: React.FC = () => {
             setHtmlContent(htmlText ?? '');
           }}
           error={errors.content?.message}
-          defaultValue={post?.content}
+          defaultValue={getEditorDefaultValue()}
         />
       </ContentContainer>
     </Container>

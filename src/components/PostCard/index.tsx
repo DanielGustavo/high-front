@@ -47,6 +47,7 @@ const PostCard: React.FC<TPost> = (post) => {
               src={post.thumbnailFilename}
               width={160}
               height={107}
+              objectFit="contain"
               alt={`"${post.title}" thubmnail`}
             />
           </PostThumbnail>

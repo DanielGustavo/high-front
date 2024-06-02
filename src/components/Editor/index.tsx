@@ -45,7 +45,7 @@ const Editor: React.FC<TEditor> = ({ error, onChange, defaultValue }) => {
       if (onChange) onChange(editorValue, textValue);
     }
 
-    if (editor && defaultValue) {
+    if (editor && defaultValue !== undefined) {
       editor.clipboard.dangerouslyPasteHTML(defaultValue ?? '');
       onTextChange();
     }
@@ -63,7 +63,14 @@ const Editor: React.FC<TEditor> = ({ error, onChange, defaultValue }) => {
     const editor = editorRef.current;
     if (!editor) return;
 
-    toggleFormatUtil(editor, formatString, value);
+    toggleFormatUtil(
+      editor,
+      formatString,
+      () => {
+        setSelectedFormats(getFormatsFromSelectedText(editor));
+      },
+      value
+    );
   }
 
   return (

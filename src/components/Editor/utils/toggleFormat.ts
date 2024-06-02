@@ -3,6 +3,7 @@ import Quill from 'quill';
 export default function toggleFormat(
   editor: Quill,
   formatString: string,
+  cb: () => void,
   value?: any
 ) {
   const selection = editor.getSelection(true);
@@ -19,7 +20,5 @@ export default function toggleFormat(
 
   editor.format(formatString, newFormatValue);
 
-  // trick to update formats state on tooltip
-  editor.blur();
-  editor.focus();
+  cb();
 }

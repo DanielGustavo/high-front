@@ -67,8 +67,13 @@ export const ContentContainer = styled.div`
     margin-top: ${({ theme }) => theme.spacing.xlg};
   }
 
-  b {
+  b,
+  strong {
     font-weight: 700;
+
+    * {
+      font-weight: 700;
+    }
   }
 
   h1,
