@@ -17,7 +17,7 @@ import {
   ErrorMessage,
 } from './styles';
 
-const Editor: React.FC<TEditor> = ({ error, onChange }) => {
+const Editor: React.FC<TEditor> = ({ error, onChange, defaultValue }) => {
   const [selectedFormats, setSelectedFormats] = useState([] as string[]);
 
   const editorRef = useRef<Quill | null>(null);
@@ -43,6 +43,11 @@ const Editor: React.FC<TEditor> = ({ error, onChange }) => {
       textValue = textValue.replace(/\n/g, '');
 
       if (onChange) onChange(editorValue, textValue);
+    }
+
+    if (editor && defaultValue) {
+      editor.clipboard.dangerouslyPasteHTML(defaultValue ?? '');
+      onTextChange();
     }
 
     editor.on('text-change', onTextChange);

@@ -5,4 +5,4 @@ export type TUser = {
   avatarFilename: string | null;
   createdAt: string;
   updateAt: string;
-}
+};

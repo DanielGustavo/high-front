@@ -1,4 +1,4 @@
-import { TPost } from '@/libs/high/types/TPost'
+import { TPost } from '@/libs/high/types/TPost';
 
 export type TPostsClient = {
   initialPage?: number;

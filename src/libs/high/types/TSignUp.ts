@@ -1,4 +1,4 @@
-import { TUser } from "./TUser";
+import { TUser } from './TUser';
 
 export type TSignUpRequest = {
   name: string;

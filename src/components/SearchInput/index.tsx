@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes, forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import FeatherIcon from 'feather-icons-react';
 
 import { TSearchInput } from '@/components/types/SearchInput/TSearchInput';

@@ -1,5 +1,5 @@
-import { TSize, TVariation } from "../TButtonCTA";
-import { EAnimationState } from "./TLoadingContainer";
+import { TSize, TVariation } from '../TButtonCTA';
+import { EAnimationState } from './TLoadingContainer';
 
 export type TLoadingContainer = {
   size: TSize;

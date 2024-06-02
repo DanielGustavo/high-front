@@ -1,9 +1,14 @@
 import React from 'react';
 import parse from 'html-react-parser';
 import { format } from 'date-fns';
+import dynamic from 'next/dynamic';
 
 import Avatar from '@/components/Avatar';
 import Thumbnail from './components/Thumbnail';
+
+const Tooltip = dynamic(() => import('./components/Tooltip'), {
+  ssr: false,
+});
 
 import * as high from '@/libs/high';
 
@@ -55,6 +60,8 @@ const PostPage: React.FC<TPostPage> = async ({ params }) => {
           </ProfileContent>
         </ProfileContainer>
       </Header>
+
+      <Tooltip post={post} />
 
       <ContentContainer>{parse(post.content)}</ContentContainer>
     </Container>

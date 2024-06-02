@@ -18,5 +18,5 @@ export default function getFormatsFromSelectedText(editor: Quill) {
     else formatsFromSelectedText.delete(formatKey);
   });
 
-  return Array.from(formatsFromSelectedText)
+  return Array.from(formatsFromSelectedText);
 }
