@@ -8,6 +8,7 @@ import React, {
 import { setCookie, destroyCookie, parseCookies } from 'nookies';
 
 import { TUser } from '@/libs/high/types/TUser';
+import * as high from '@/libs/high';
 
 interface AuthProps {
   logout: () => void;
@@ -55,16 +56,22 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   }
 
   function logout() {
-    destroyCookie(undefined, 'high:token');
-    destroyCookie(undefined, 'high:user');
+    destroyCookie({}, 'high:token');
+    destroyCookie({}, 'high:user');
 
     setUser(undefined);
     setToken(undefined);
     setAuthenticated(false);
+
+    document.location.reload();
   }
 
   useEffect(() => {
     setAuthenticated(!!user && !!token);
+
+    if (token) {
+      high.apiHandler.defaults.headers['Authorization'] = `Bearer ${token}`;
+    }
   }, [user, token]);
 
   return (

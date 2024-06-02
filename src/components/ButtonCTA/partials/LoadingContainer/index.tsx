@@ -3,7 +3,10 @@ import ReactLoading from 'react-loading';
 
 import { theme } from '@/styles/theme';
 
-import { EAnimationState, TLoadingContainer } from '@/components/types/ButtonCTA/LoadingContainer/TLoadingContainer';
+import {
+  EAnimationState,
+  TLoadingContainer,
+} from '@/components/types/ButtonCTA/LoadingContainer/TLoadingContainer';
 
 import { Container } from './styles';
 
@@ -18,13 +21,9 @@ const LoadingContainer: React.FC<TLoadingContainer> = ({
   useEffect(() => {
     if (isLoading && animationState === EAnimationState.stopped) {
       setAnimationState(EAnimationState.playing);
-
-      setTimeout(() => {
-        setAnimationState(EAnimationState.played);
-      }, 500);
     }
 
-    if (!isLoading && animationState === EAnimationState.played) {
+    if (!isLoading && animationState === EAnimationState.playing) {
       setAnimationState(EAnimationState.ending);
     }
 

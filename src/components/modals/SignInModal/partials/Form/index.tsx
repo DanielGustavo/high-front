@@ -16,7 +16,6 @@ import { Container, InputsGroup } from './styles';
 
 const Form: React.FC<TForm> = ({ onSignIn }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
 
   const { persistAuthData } = useAuth();
 

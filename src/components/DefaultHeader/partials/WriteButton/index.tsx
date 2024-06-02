@@ -31,7 +31,7 @@ const WriteButton: React.FC<TWriteButton> = ({ authenticated }) => {
   }
 
   function handleSignIn() {
-    router.push('/write');
+    router.push('/posts/write');
   }
 
   if (!authenticated)
@@ -52,7 +52,7 @@ const WriteButton: React.FC<TWriteButton> = ({ authenticated }) => {
     );
 
   return (
-    <Link href="/write">
+    <Link href="/posts/write">
       <Button />
     </Link>
   );

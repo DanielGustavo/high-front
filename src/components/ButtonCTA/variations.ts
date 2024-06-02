@@ -8,8 +8,16 @@ export const variations = {
     gray: {
       background: theme.colors.gray,
     },
+    success: {
+      background: theme.colors.success,
+    },
   },
   sizes: {
+    xSmall: {
+      padding: `0 10px`,
+      fontSize: theme.font.sizes.default,
+      lineHeight: '25px',
+    },
     small: {
       padding: `${theme.spacing.xs} ${theme.spacing.sm}`,
       fontSize: theme.font.sizes.default,

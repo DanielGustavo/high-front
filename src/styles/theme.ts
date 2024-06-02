@@ -33,5 +33,6 @@ export const theme = {
   zIndex: {
     header: 10,
     modal: 20,
+    editorTooltip: 30,
   },
 };

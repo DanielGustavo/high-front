@@ -9,6 +9,7 @@ import { theme } from '@/styles/theme';
 import { AuthProvider } from '@/contexts/AuthContext';
 
 import StyledComponentsRegistry from './StyledComponentsRegistry';
+import { HeaderProvider } from '@/contexts/HeaderContext';
 
 export default function Providers({
   children,
@@ -18,10 +19,12 @@ export default function Providers({
   return (
     <StyledComponentsRegistry>
       <AuthProvider>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          {children}
-        </ThemeProvider>
+        <HeaderProvider>
+          <ThemeProvider theme={theme}>
+            <GlobalStyle />
+            {children}
+          </ThemeProvider>
+        </HeaderProvider>
       </AuthProvider>
     </StyledComponentsRegistry>
   );

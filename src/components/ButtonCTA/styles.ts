@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { darken, lighten } from 'polished';
+import { darken, transparentize } from 'polished';
 
 import { TContainer } from '@/components/types/ButtonCTA/TStyles';
 
@@ -46,7 +46,7 @@ export const Container = styled.button<TContainer>`
     background: ${({ variation }) => {
       const bgColor = variations.colors[variation].background;
 
-      return lighten(0.3, bgColor);
+      return transparentize(0.7, bgColor);
     }};
 
     cursor: not-allowed;
