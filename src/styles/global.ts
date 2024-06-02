@@ -24,4 +24,9 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     text-decoration: none;
   }
+
+
+  .Toastify__toast-container {
+    margin-top: 75px;
+}
 `;
