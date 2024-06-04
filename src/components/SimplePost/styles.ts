@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 
+import { THeader } from '@/components/types/SimplePost/TStyles';
+
 export const Container = styled(Link)`
   display: flex;
   flex-direction: column;
@@ -28,14 +30,14 @@ export const Container = styled(Link)`
   }
 `;
 
-export const Header = styled.header`
+export const Header = styled.header<THeader>`
   display: flex;
   align-items: center;
   gap: ${({ theme }) => theme.spacing.xs};
 
   h2 {
-    color: ${({ theme }) => theme.colors.gray};
+    color: ${({ theme, isMine }) => theme.colors[isMine ? 'success' : 'gray']};
     font-size: ${({ theme }) => theme.font.sizes.small};
-    font-weight: 600;
+    font-weight: ${({ isMine }) => (isMine ? 700 : 600)};
   }
 `;

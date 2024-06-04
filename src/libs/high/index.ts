@@ -5,3 +5,4 @@ export { loadPosts } from './loadPosts';
 export { loadPost } from './loadPost';
 export { publishPost } from './publishPost';
 export { editPost } from './editPost';
+export { deletePost } from './deletePost';
