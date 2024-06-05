@@ -11,6 +11,7 @@ export const Header = styled.header`
   top: 0;
   position: sticky;
 
+  form,
   div {
     display: flex;
     align-items: center;

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 import SearchInput from '@/components/SearchInput';
 import Logo from '@/components/Logo';
@@ -19,8 +19,13 @@ const DefaultHeader: React.FC = () => {
 
   const { user, authenticated } = useAuth();
   const pathname = usePathname();
-  const { publishButtonIsDisabled, onClickPublishRef, publishButtonIsLoading } =
-    useHeader();
+  const searchParams = useSearchParams();
+  const {
+    publishButtonIsDisabled,
+    onClickPublishRef,
+    publishButtonIsLoading,
+    onSearchRef,
+  } = useHeader();
 
   useEffect(() => {
     setAtWritePage(pathname === '/posts/write');
@@ -32,12 +37,28 @@ const DefaultHeader: React.FC = () => {
     }
   }
 
+  function search(value?: string) {
+    if (onSearchRef.current) {
+      onSearchRef.current(value);
+    }
+  }
+
+  function handleSubmit(e: any) {
+    e.preventDefault();
+
+    search(e.target.search.value || undefined);
+  }
+
   return (
     <Header>
-      <div>
-        <Logo simple />
-        <SearchInput placeholder="Search" />
-      </div>
+      <form onSubmit={handleSubmit}>
+        <Logo simple onClick={() => search(undefined)} />
+        <SearchInput
+          name="search"
+          placeholder="Search"
+          defaultValue={searchParams.get('search') || undefined}
+        />
+      </form>
 
       <NavContainer>
         {atWritePage ? (

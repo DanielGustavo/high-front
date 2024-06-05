@@ -7,9 +7,13 @@ import simpleLogo from '@/static/img/simpleLogo.svg';
 
 import { TLogo } from '@/components/types/Logo/TLogo';
 
-const Logo: React.FC<TLogo> = ({ simple }) => {
+const Logo: React.FC<TLogo> = ({ simple, onClick }) => {
   return (
-    <Link href="/posts" style={{ display: 'flex', alignItems: 'center' }}>
+    <Link
+      href="/posts"
+      style={{ display: 'flex', alignItems: 'center' }}
+      onClick={onClick}
+    >
       {simple ? (
         <Image height={25} src={simpleLogo} alt="High logo" />
       ) : (

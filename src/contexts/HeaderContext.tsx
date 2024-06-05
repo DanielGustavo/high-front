@@ -14,6 +14,9 @@ type THeaderProps = {
   publishButtonIsLoading: boolean;
   setPublishButtonIsLoading: Dispatch<SetStateAction<boolean>>;
   onClickPublishRef: React.MutableRefObject<undefined | (() => void)>;
+  onSearchRef: React.MutableRefObject<
+    undefined | ((search: string | undefined) => void)
+  >;
 };
 
 const HeaderContext = createContext({} as THeaderProps);
@@ -28,6 +31,9 @@ export const HeaderProvider: React.FC<{ children: ReactNode }> = ({
   const [publishButtonIsDisabled, setPublishButtonIsDisabled] = useState(true);
   const [publishButtonIsLoading, setPublishButtonIsLoading] = useState(false);
   const onClickPublishRef = useRef(undefined as undefined | (() => void));
+  const onSearchRef = useRef(
+    undefined as undefined | ((search: string | undefined) => void)
+  );
 
   return (
     <HeaderContext.Provider
@@ -37,6 +43,7 @@ export const HeaderProvider: React.FC<{ children: ReactNode }> = ({
         onClickPublishRef,
         publishButtonIsLoading,
         setPublishButtonIsLoading,
+        onSearchRef,
       }}
     >
       {children}
