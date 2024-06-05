@@ -1,5 +1,7 @@
 import React, {
+  Dispatch,
   ReactNode,
+  SetStateAction,
   createContext,
   useContext,
   useEffect,
@@ -13,6 +15,7 @@ import * as high from '@/libs/high';
 interface AuthProps {
   logout: () => void;
   persistAuthData: (user: TUser, token: string) => void;
+  setUser: Dispatch<SetStateAction<TUser | undefined>>;
   token?: string;
   user?: TUser;
   authenticated: boolean;
@@ -44,11 +47,10 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     const [, payload] = token.split('.');
     const parsedPayload = JSON.parse(atob(payload)) as any;
 
-    const currentTimeInSeconds = new Date().getTime() / 1000;
-    const maxAge = parsedPayload.exp - currentTimeInSeconds;
+    const expires = new Date(parsedPayload.exp * 1000);
 
-    setCookie(undefined, 'high:token', token, { maxAge });
-    setCookie(undefined, 'high:user', JSON.stringify(user), { maxAge });
+    setCookie(undefined, 'high:token', token, { expires });
+    setCookie(undefined, 'high:user', JSON.stringify(user), { expires });
 
     setUser(user);
     setToken(token);
@@ -76,7 +78,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
 
   return (
     <AuthContext.Provider
-      value={{ token, user, authenticated, persistAuthData, logout }}
+      value={{ token, user, authenticated, persistAuthData, logout, setUser }}
     >
       {children}
     </AuthContext.Provider>

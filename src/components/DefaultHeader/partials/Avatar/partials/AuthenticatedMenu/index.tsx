@@ -2,6 +2,7 @@ import React from 'react';
 import FeatherIcon from 'feather-icons-react';
 
 import SimpleButton from '@/components/SimpleButton';
+import UploadAvatarButton from './partials/avatarUploadButton.ts';
 import MenuBase from '../MenuBase';
 
 import { useAuth } from '@/contexts/AuthContext';
@@ -30,6 +31,8 @@ const AuthenticatedMenu: React.FC<TAuthenticatedMenu> = ({
         <b>{user?.name}</b>
         <p>{user?.email}</p>
       </MenuUserDataSection>
+
+      <UploadAvatarButton />
 
       <SimpleButton onClick={handleLogout}>
         <FeatherIcon icon="log-out" size="20px" />

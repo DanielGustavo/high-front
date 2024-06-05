@@ -7,3 +7,4 @@ export { publishPost } from './publishPost';
 export { editPost } from './editPost';
 export { deletePost } from './deletePost';
 export { uploadPostThumbnail } from './uploadPostThumbnail';
+export { uploadAvatar } from './uploadAvatar';
