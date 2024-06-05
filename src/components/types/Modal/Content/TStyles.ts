@@ -1,4 +1,4 @@
-export type TBackground = {
+export type TBackgroundBlur = {
   open: boolean;
   fadeMilliseconds: number;
 };

@@ -6,6 +6,7 @@ import FeatherIcon from 'feather-icons-react';
 import { useRouter } from 'next/navigation';
 
 import DeletePostModal from '@/components/modals/DeletePostModal';
+import ThumbnailButton from '../ThumbnailButton';
 
 import { TModalRef } from '@/components/types/Modal/Root/TModal';
 
@@ -35,14 +36,19 @@ const Tooltip: React.FC<TTooltip> = ({ post }) => {
   return (
     <Container>
       <Link href={`/posts/write?postId=${post.id}`}>
-        <Button type="button">
+        <Button type="button" title="edit post">
           <FeatherIcon icon="edit-2" size={20} />
         </Button>
       </Link>
 
-      <Button type="button" onClick={openDeletePostModal}>
+      <Button type="button" onClick={openDeletePostModal} title="delete post">
         <FeatherIcon icon="trash-2" size={20} />
       </Button>
+
+      <ThumbnailButton
+        postId={post.id}
+        onUpload={() => document.location.reload()}
+      />
 
       <DeletePostModal
         ref={deletePostModalRef as any}

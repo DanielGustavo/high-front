@@ -19,6 +19,7 @@
     "react": "^18",
     "react-animate-height": "^3.2.3",
     "react-dom": "^18",
+    "react-easy-crop": "^5.0.7",
     "react-hook-form": "^7.51.5",
     "react-hook-inview": "^4.5.1",
     "react-loading": "^2.0.3",

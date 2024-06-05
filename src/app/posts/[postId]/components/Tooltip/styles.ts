@@ -15,6 +15,7 @@ export const Container = styled.div`
 `;
 
 export const Button = styled.button`
+  cursor: pointer;
   background: none;
 
   border: none;

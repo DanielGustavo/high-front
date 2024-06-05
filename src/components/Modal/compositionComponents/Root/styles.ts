@@ -1,7 +1,7 @@
 import styled, { css, keyframes } from 'styled-components';
 import { transparentize } from 'polished';
 
-import { TBackground } from '@/components/types/Modal/Content/TStyles';
+import { TBackgroundBlur } from '@/components/types/Modal/Content/TStyles';
 
 const fadeIn = keyframes`
   0% {
@@ -30,7 +30,7 @@ const scaleIn = keyframes`
   }
 `;
 
-export const Background = styled.div<TBackground>`
+export const Background = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -39,6 +39,11 @@ export const Background = styled.div<TBackground>`
   pointer-events: all;
 
   z-index: ${({ theme }) => theme.zIndex.modal};
+`;
+
+export const BackgroundBlur = styled.div<TBackgroundBlur>`
+  position: fixed;
+  inset: 0;
 
   animation: ${({ fadeMilliseconds }) => fadeMilliseconds}ms ${fadeIn} forwards;
   background: ${({ theme }) => transparentize(0.05, theme.colors.light)};

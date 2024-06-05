@@ -1,5 +1,6 @@
 export type TModal = {
   children?: React.ReactNode;
+  onClose?: () => void;
 };
 
 export type TModalRef = {

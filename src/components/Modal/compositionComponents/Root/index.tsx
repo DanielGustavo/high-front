@@ -12,10 +12,10 @@ import { TModalRef, TModal } from '@/components/types/Modal/Root/TModal';
 
 import { theme } from '@/styles/theme';
 
-import { Background, Container, Header } from './styles';
+import { Background, BackgroundBlur, Container, Header } from './styles';
 
 const Modal: React.ForwardRefRenderFunction<TModalRef, TModal> = (
-  { children },
+  { children, onClose },
   ref
 ) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,6 +30,7 @@ const Modal: React.ForwardRefRenderFunction<TModalRef, TModal> = (
 
   function close() {
     setIsOpen(false);
+    if (onClose) onClose();
 
     setTimeout(() => setKeepInDOM(false), fadeMilliseconds);
   }
@@ -62,20 +63,26 @@ const Modal: React.ForwardRefRenderFunction<TModalRef, TModal> = (
   );
 
   const Component = (
-    <Background
-      onClick={handleBackgroundClick}
-      fadeMilliseconds={fadeMilliseconds}
-      open={isOpen}
-    >
-      <Container>
-        <Header>
-          <button type="button" onClick={close}>
-            <FeatherIcon strokeWidth="1px" icon="x" fill={theme.colors.dark} />
-          </button>
-        </Header>
+    <Background>
+      <BackgroundBlur
+        onClick={handleBackgroundClick}
+        fadeMilliseconds={fadeMilliseconds}
+        open={isOpen}
+      >
+        <Container>
+          <Header>
+            <button type="button" onClick={close}>
+              <FeatherIcon
+                strokeWidth="1px"
+                icon="x"
+                fill={theme.colors.dark}
+              />
+            </button>
+          </Header>
 
-        {children}
-      </Container>
+          {children}
+        </Container>
+      </BackgroundBlur>
     </Background>
   );
 
