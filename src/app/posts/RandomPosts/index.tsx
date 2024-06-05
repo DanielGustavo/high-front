@@ -1,6 +1,9 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 
-import SimplePost from '@/components/SimplePost';
+const SimplePost = dynamic(() => import('@/components/SimplePost'), {
+  ssr: false,
+});
 
 import * as high from '@/libs/high';
 
